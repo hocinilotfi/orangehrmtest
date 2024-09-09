@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y git
 WORKDIR /app
 
 # Cloner le dépôt GitHub contenant le projet
-RUN git clone https://github.com/username/repo.git .
+RUN git clone https://github.com/hocinilotfi/orangehrmtest.git .
 
 # Construire le projet
 RUN mvn clean install
