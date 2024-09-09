@@ -1,0 +1,5 @@
+logwire/tools/WebDriverManager.class
+logwire/stepDefs/LoginPageSteps.class
+logwire/hooks/Hooks.class
+logwire/pages/LoginPage.class
+logwire/RunCucumberTest.class
