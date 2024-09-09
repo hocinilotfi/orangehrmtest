@@ -1,5 +1,5 @@
 # Utiliser une image de base avec Maven et OpenJDK préinstallés
-FROM maven:3-openjdk-17
+FROM maven:3-openjdk-17-slim
 
 # Installer Git
 RUN apt-get update && apt-get install -y git
