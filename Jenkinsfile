@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 // Cloner le dépôt GitHub contenant le code source et le Dockerfile
-                git credentialsId: '', url:'https://github.com/hocinilotfi/orangehrmtest.git'
+               git branch: 'main',credentialsId: '', url:'https://github.com/hocinilotfi/orangehrmtest.git'
             }
         }
         stage('Build Docker Image') {

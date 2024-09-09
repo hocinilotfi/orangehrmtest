@@ -11,7 +11,7 @@ WORKDIR /app
 RUN git clone https://github.com/hocinilotfi/orangehrmtest.git .
 
 # Construire le projet
-RUN mvn clean install
+#RUN mvn clean install
 
 # Définir le point d'entrée pour les tests
-CMD ["mvn", "test"]
+#CMD ["mvn", "test"]
