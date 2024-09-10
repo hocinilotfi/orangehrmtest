@@ -54,8 +54,11 @@ pipeline {
     post {
         always {
             // Publier les résultats des tests Cucumber
+            script {
+                sh 'ls -R target/cucumber-report'
+            }
             cucumber 'target/cucumber-report/cucumber-report.json'
-            
+
             // Nettoyer les ressources Selenium Hub
             sh 'docker rm -f selenium-hub || true'
         }
