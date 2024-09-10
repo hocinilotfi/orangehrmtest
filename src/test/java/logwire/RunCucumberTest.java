@@ -12,6 +12,6 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("logwire")
 //@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "logwire.stepDefs")
+// @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "logwire.stepDefs")
 public class RunCucumberTest {
 }

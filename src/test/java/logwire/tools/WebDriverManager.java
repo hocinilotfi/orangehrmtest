@@ -20,7 +20,7 @@ public class WebDriverManager {
                     FirefoxOptions options = new FirefoxOptions();
                     options.addArguments("--headless=new");
                     driver = new FirefoxDriver(options);
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     // driver = new FirefoxDriver();
                     break;
                 case "chrome":
@@ -29,8 +29,7 @@ public class WebDriverManager {
                     ChromeOptions options2 = new ChromeOptions();
                     options2.addArguments("--headless=new");
                     driver = new ChromeDriver(options2);
-                    // driver = new ChromeDriver();
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
             }
         }
