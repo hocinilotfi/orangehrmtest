@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.WebDriver;
 
 import logwire.pages.LoginPage;
-import logwire.tools.WebDriverManager;
-
+import logwire.tools.WebDriverManagerClass;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,7 +16,7 @@ public class LoginPageSteps {
     private LoginPage loginPage;
 
     public LoginPageSteps() {
-        this.driver = WebDriverManager.getDriver();
+        this.driver = WebDriverManagerClass.getDriver();
         this.loginPage = new LoginPage(this.driver);
     }
 

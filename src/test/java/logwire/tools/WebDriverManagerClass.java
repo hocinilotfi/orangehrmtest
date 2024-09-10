@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class WebDriverManager {
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class WebDriverManagerClass{
     private static WebDriver driver;
         public static WebDriver getDriver() {
         if (driver == null) {
@@ -28,9 +30,9 @@ public class WebDriverManager {
                     // System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
                     ChromeOptions options2 = new ChromeOptions();
                     options2.addArguments("--headless");
-                    options2.addArguments("--no-sandbox");
-                    options2.addArguments("--disable-dev-shm-usage");
-                    options2.addArguments("--disable-gpu");
+                    // options2.addArguments("--no-sandbox");
+                    // options2.addArguments("--disable-dev-shm-usage");
+                    // options2.addArguments("--disable-gpu");
                     driver = new ChromeDriver(options2);
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;

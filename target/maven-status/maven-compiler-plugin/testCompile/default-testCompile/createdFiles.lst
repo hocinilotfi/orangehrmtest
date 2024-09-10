@@ -1,4 +1,4 @@
-logwire/tools/WebDriverManager.class
+logwire/tools/WebDriverManagerClass.class
 logwire/stepDefs/LoginPageSteps.class
 logwire/hooks/Hooks.class
 logwire/pages/LoginPage.class

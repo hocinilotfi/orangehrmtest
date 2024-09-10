@@ -12,13 +12,22 @@ import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
-import logwire.tools.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import logwire.tools.WebDriverManagerClass;
 
 import java.io.File;
 import java.nio.file.Files;
 
 public class Hooks {
+    
+
+    @BeforeAll
+    static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
+    }
     @Before
     public void setUp() {
 
@@ -34,11 +43,11 @@ public class Hooks {
         if (scenario.isFailed()) {
             takeScreenshot(scenario);
         }
-        WebDriverManager.quitDriver();
+        WebDriverManagerClass.quitDriver();
     }
 
     private void takeScreenshot(Scenario scenario) {
-        WebDriver driver = WebDriverManager.getDriver();
+        WebDriver driver = WebDriverManagerClass.getDriver();
         if (driver instanceof TakesScreenshot) {
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
