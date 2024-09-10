@@ -23,11 +23,11 @@ import java.nio.file.Files;
 public class Hooks {
     
 
-    @BeforeAll
-    static void setupAll() {
-        WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
-    }
+    // @BeforeAll
+    // static void setupAll() {
+    //     WebDriverManager.chromedriver().setup();
+    //     WebDriverManager.firefoxdriver().setup();
+    // }
     @Before
     public void setUp() {
 

@@ -33,9 +33,9 @@ public class WebDriverManagerClass{
                     // options2.addArguments("--no-sandbox");
                     // options2.addArguments("--disable-dev-shm-usage");
                     // options2.addArguments("--disable-gpu");
-                    //driver = new ChromeDriver(options2);
-                    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
-                    driver = wdm.create();
+                    driver = new ChromeDriver(options2);
+                    // WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
+                    // driver = wdm.create();
                     // driver = WebDriverManager.chromedriver().create();
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
                     break;
