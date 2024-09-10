@@ -27,7 +27,10 @@ public class WebDriverManager {
                 default:
                     // System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
                     ChromeOptions options2 = new ChromeOptions();
-                    options2.addArguments("--headless=new");
+                    options2.addArguments("--headless");
+                    options2.addArguments("--no-sandbox");
+                    options2.addArguments("--disable-dev-shm-usage");
+                    options2.addArguments("--disable-gpu");
                     driver = new ChromeDriver(options2);
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
