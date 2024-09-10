@@ -26,7 +26,8 @@ pipeline {
                 script {
                     try {
                         // Exécuter le conteneur Docker pour construire le projet avec mvn clean install
-                        sh 'docker run --rm -v $PWD:/app -w /app maven-test-image mvn clean install'
+                        // Assurez-vous que le volume monté pointe vers le répertoire correct contenant le pom.xml
+                        sh 'docker run --rm -v $WORKSPACE:/app -w /app maven-test-image mvn clean install'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
@@ -39,7 +40,7 @@ pipeline {
                 script {
                     try {
                         // Exécuter le conteneur Docker pour les tests Maven
-                        sh 'docker run --rm -v $PWD:/app -w /app maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
+                        sh 'docker run --rm -v $WORKSPACE:/app -w /app maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
