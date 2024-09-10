@@ -9,12 +9,9 @@ RUN apt-get update && \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update && apt-get install -y google-chrome-stable \
     # Installer les dépendances nécessaires pour Firefox
-    && apt-get install -y firefox-esr \
+    && apt-get install -y firefox-esr 
     # Installer ChromeDriver
-    && wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip \
-    && unzip chromedriver_linux64.zip \
-    && mv chromedriver /usr/local/bin/chromedriver \
-    && chmod +x /usr/local/bin/chromedriver 
+   
 
 # Définir le répertoire de travail
 WORKDIR /app
