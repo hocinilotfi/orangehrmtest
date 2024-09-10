@@ -10,12 +10,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class WebDriverManagerClass{
+public class WebDriverManagerClass {
     private static WebDriver driver;
-        public static WebDriver getDriver() {
+
+    public static WebDriver getDriver() {
         if (driver == null) {
             String browser = System.getProperty("browser", "chrome");
-            
+
             switch (browser.toLowerCase()) {
                 case "firefox":
                     // System.setProperty("webdriver.gecko.driver", "path/to/geckodriver");
@@ -28,15 +29,28 @@ public class WebDriverManagerClass{
                 case "chrome":
                 default:
                     // System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-                    ChromeOptions options2 = new ChromeOptions();
-                    options2.addArguments("--headless");
+                    // ChromeOptions options2 = new ChromeOptions();
+                    // options2.addArguments("--headless");
                     // options2.addArguments("--no-sandbox");
                     // options2.addArguments("--disable-dev-shm-usage");
                     // options2.addArguments("--disable-gpu");
-                    driver = new ChromeDriver(options2);
+                    // driver = new ChromeDriver(options2);
                     // WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
                     // driver = wdm.create();
                     // driver = WebDriverManager.chromedriver().create();
+                    WebDriverManager.chromedriver().browserVersion("116").setup();
+
+                    ChromeOptions options2 = new ChromeOptions();
+
+                    options2.addArguments("start-maximized");
+                    options2.addArguments("enable-automation");
+                    options2.addArguments("--no-sandbox");
+                    options2.addArguments("--disable-infobars");
+                    options2.addArguments("--disable-dev-shm-usage");
+                    options2.addArguments("--disable-browser-side-navigation");
+                    options2.addArguments("--disable-gpu");
+
+                    driver = new ChromeDriver(options2);
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
                     break;
             }
