@@ -36,7 +36,7 @@ pipeline {
                 script {
                     try {
                         // Monter le répertoire target du conteneur vers le workspace de Jenkins
-                        sh 'docker run --rm --link selenium-hub:selenium-hub -v $WORKSPACE/target:/app/target maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
+                        sh 'docker run --rm --link selenium-hub:selenium-hub maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
