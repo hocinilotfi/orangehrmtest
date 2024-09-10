@@ -36,7 +36,7 @@ pipeline {
                 script {
                     try {
                         // Monter le répertoire target du conteneur vers le workspace de Jenkins
-                        sh 'docker run --rm --link selenium-hub:selenium-hub -v $WORKSPACE/target:/app/target maven-test-image mvn test -Dcucumber.plugin="html:target/rapport.html"'
+                        sh 'docker run --rm --link selenium-hub:selenium-hub -v $WORKSPACE/target:/app/target maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
@@ -52,7 +52,7 @@ pipeline {
                 sh 'ls -R $WORKSPACE/target || echo "Report directory not found"'
             }
             // Publier les résultats des tests Cucumber depuis le répertoire monté
-            cucumber 'target/rapport.html'
+            cucumber 'target/cucumber-report/cucumber-report.json'
         }
     }
 }
