@@ -42,7 +42,7 @@ pipeline {
                 script {
                     try {
                         // Exécuter les tests Maven dans le conteneur Maven
-                        sh 'docker run --rm --link selenium-hub:maven-test-image maven-test-image mvn test'
+                        sh 'docker run --rm --link selenium-hub:selenium-hub -v $WORKSPACE/target:/app/target maven-test-image mvn test'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
