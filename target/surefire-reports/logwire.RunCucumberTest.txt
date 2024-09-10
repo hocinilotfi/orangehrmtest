@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: logwire.RunCucumberTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.701 s <<< FAILURE! - in logwire.RunCucumberTest
-Login sur le site OrangeHRM.Login avec mot de passe correct et non d utilisateur correct  Time elapsed: 0.498 s  <<< ERROR!
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.538 s <<< FAILURE! - in logwire.RunCucumberTest
+Login sur le site OrangeHRM.Login avec mot de passe correct et non d utilisateur correct  Time elapsed: 0.288 s  <<< ERROR!
 io.cucumber.core.exception.CucumberException: Failed to instantiate class logwire.stepDefs.LoginPageSteps
 	at io.cucumber.core.backend.DefaultObjectFactory.cacheNewInstance(DefaultObjectFactory.java:67)
 	at io.cucumber.core.backend.DefaultObjectFactory.getInstance(DefaultObjectFactory.java:45)
@@ -159,7 +159,7 @@ Caused by: java.nio.channels.UnresolvedAddressException
 	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
 	... 23 more
 
-Login sur le site OrangeHRM.Login avec mot de passe correct et non d utilisateur incorrect  Time elapsed: 0.04 s  <<< ERROR!
+Login sur le site OrangeHRM.Login avec mot de passe correct et non d utilisateur incorrect  Time elapsed: 0.024 s  <<< ERROR!
 io.cucumber.core.exception.CucumberException: Failed to instantiate class logwire.stepDefs.LoginPageSteps
 	at io.cucumber.core.backend.DefaultObjectFactory.cacheNewInstance(DefaultObjectFactory.java:67)
 	at io.cucumber.core.backend.DefaultObjectFactory.getInstance(DefaultObjectFactory.java:45)
@@ -316,7 +316,7 @@ Caused by: java.nio.channels.UnresolvedAddressException
 	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
 	... 23 more
 
-Login sur le site OrangeHRM.Login avec mot de passe incorrect et non d utilisateur correct  Time elapsed: 0.025 s  <<< ERROR!
+Login sur le site OrangeHRM.Login avec mot de passe incorrect et non d utilisateur correct  Time elapsed: 0.029 s  <<< ERROR!
 io.cucumber.core.exception.CucumberException: Failed to instantiate class logwire.stepDefs.LoginPageSteps
 	at io.cucumber.core.backend.DefaultObjectFactory.cacheNewInstance(DefaultObjectFactory.java:67)
 	at io.cucumber.core.backend.DefaultObjectFactory.getInstance(DefaultObjectFactory.java:45)
