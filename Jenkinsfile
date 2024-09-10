@@ -4,16 +4,29 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                // Cloner le dépôt GitHub contenant le code source et le Dockerfile
-               git branch: 'main',credentialsId: '', url:'https://github.com/hocinilotfi/orangehrmtest.git'
+                // Cloner le dépôt GitHub contenant le code source
+                git branch: 'main', credentialsId: '', url: 'https://github.com/hocinilotfi/orangehrmtest.git'
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Maven Image') {
             steps {
                 script {
                     try {
-                        // Construire l'image Docker
+                        // Construire l'image Docker Maven pour les tests
                         sh 'docker build -t maven-test-image -f docker/Dockerfile .'
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
+            }
+        }
+        stage('Run Selenium Server') {
+            steps {
+                script {
+                    try {
+                        // Exécuter le conteneur Selenium Grid
+                        sh 'docker run -d --name selenium-hub -p 4444:4444 selenium/standalone-chrome'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
@@ -25,8 +38,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        // Exécuter le conteneur Docker pour les tests Maven
-                        sh 'docker run --rm maven-test-image mvn test -Dbrowser="firefox" -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
+                        // Exécuter les tests Maven dans le conteneur Maven
+                        sh 'docker run --rm --link selenium-hub:maven-test-image maven-test-image mvn clean install test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e

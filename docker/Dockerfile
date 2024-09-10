@@ -1,29 +1,23 @@
-# Utiliser une image Maven avec OpenJDK 17
+# Utiliser l'image de base Maven avec OpenJDK
 FROM maven:3-openjdk-17-slim
 
-# Installer les dépendances nécessaires pour Chrome et Firefox
-RUN apt-get update && \
-    apt-get install -y wget unzip curl gnupg \
-    # Installer les dépendances nécessaires pour Chrome
-    # && curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    # && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list \
-    # && apt-get update && apt-get install -y google-chrome-stable \
-    # Installer les dépendances nécessaires pour Firefox
-    && apt-get install -y firefox-esr 
-    # Installer ChromeDriver
-   
+# Installer Git
+RUN apt-get update && apt-get install -y git
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers du projet dans le conteneur
-COPY . /app
+# Cloner le dépôt GitHub contenant le projet
+RUN git clone https://github.com/hocinilotfi/orangehrmtest.git .
 
-# Construire le projet Maven
-# RUN mvn clean install
+# Définir le répertoire de travail pour Maven
+WORKDIR /app/orangehrmtest
 
-# Construire le projet
-#RUN mvn clean install
+# Copier le fichier POM et les sources dans le conteneur
+COPY . /app/orangehrmtest
 
-# Définir le point d'entrée pour les tests
-#CMD ["mvn", "test"]
+# Installer les dépendances Maven
+RUN mvn dependency:go-offline
+
+# Commande par défaut (peut être remplacée dans le pipeline Jenkins)
+CMD ["mvn", "clean", "install"]

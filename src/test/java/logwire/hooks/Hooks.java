@@ -8,35 +8,20 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import logwire.tools.WebDriverManagerClass;
 
 import java.io.File;
 import java.nio.file.Files;
 
 public class Hooks {
-    
 
-    // @BeforeAll
-    // static void setupAll() {
-    //     WebDriverManager.chromedriver().setup();
-    //     WebDriverManager.firefoxdriver().setup();
-    // }
     @Before
     public void setUp() {
-
+        // Initialisation des ressources si nécessaire
     }
-
-    //@After
-    //public void quit(){
-    //    WebDriverManager.quitDriver();
-    //}
 
     @After
     public void tearDown(Scenario scenario) {

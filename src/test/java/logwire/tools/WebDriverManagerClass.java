@@ -1,58 +1,48 @@
 package logwire.tools;
 
-import java.time.Duration;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WebDriverManagerClass {
     private static WebDriver driver;
+    private static final String SELENIUM_GRID_URL = "http://selenium-hub:4444/wd/hub"; // URL de votre Selenium Grid
 
     public static WebDriver getDriver() {
         if (driver == null) {
             String browser = System.getProperty("browser", "chrome");
 
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+
             switch (browser.toLowerCase()) {
                 case "firefox":
-                    // System.setProperty("webdriver.gecko.driver", "path/to/geckodriver");
-                    FirefoxOptions options = new FirefoxOptions();
-                    options.addArguments("--headless=new");
-                    driver = new FirefoxDriver(options);
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                    // driver = new FirefoxDriver();
+                    capabilities.setBrowserName("firefox");
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
                     break;
                 case "chrome":
                 default:
-                    // System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-                    // ChromeOptions options2 = new ChromeOptions();
-                    // options2.addArguments("--headless");
-                    // options2.addArguments("--no-sandbox");
-                    // options2.addArguments("--disable-dev-shm-usage");
-                    // options2.addArguments("--disable-gpu");
-                    // driver = new ChromeDriver(options2);
-                    // WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
-                    // driver = wdm.create();
-                    // driver = WebDriverManager.chromedriver().create();
-                    WebDriverManager.chromedriver().browserVersion("116").setup();
-
-                    ChromeOptions options2 = new ChromeOptions();
-
-                    options2.addArguments("start-maximized");
-                    options2.addArguments("enable-automation");
-                    options2.addArguments("--no-sandbox");
-                    options2.addArguments("--disable-infobars");
-                    options2.addArguments("--disable-dev-shm-usage");
-                    options2.addArguments("--disable-browser-side-navigation");
-                    options2.addArguments("--disable-gpu");
-
-                    driver = new ChromeDriver(options2);
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+                    capabilities.setBrowserName("chrome");
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
                     break;
+            }
+
+            try {
+                driver = new RemoteWebDriver(new URL(SELENIUM_GRID_URL), capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("URL malformed for Selenium Grid: " + SELENIUM_GRID_URL);
             }
         }
         return driver;
