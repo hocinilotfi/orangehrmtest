@@ -39,7 +39,7 @@ pipeline {
                 script {
                     try {
                         // Exécuter les tests Maven dans le conteneur Maven
-                        sh 'docker run --rm --link selenium-hub:maven-test-image maven-test-image mvn clean install test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
+                        sh 'docker run --rm --link selenium-hub:maven-test-image maven-test-image mvn test -Dcucumber.plugin="json:target/cucumber-report/cucumber-report.json"'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
                         throw e
