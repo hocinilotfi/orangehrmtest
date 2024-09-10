@@ -37,7 +37,7 @@ public class WebDriverManagerClass{
                     WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
                     driver = wdm.create();
                     // driver = WebDriverManager.chromedriver().create();
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
                     break;
             }
         }
