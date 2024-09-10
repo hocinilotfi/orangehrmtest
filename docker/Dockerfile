@@ -15,14 +15,6 @@ RUN apt-get update && \
     && unzip chromedriver_linux64.zip \
     && mv chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
-    # Installer GeckoDriver
-    && wget https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz \
-    && tar -xzf geckodriver-v0.33.0-linux64.tar.gz \
-    && mv geckodriver /usr/local/bin/geckodriver \
-    && chmod +x /usr/local/bin/geckodriver \
-    # Nettoyer les fichiers temporaires
-    && rm chromedriver_linux64.zip geckodriver-v0.33.0-linux64.tar.gz \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Définir le répertoire de travail
 WORKDIR /app
