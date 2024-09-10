@@ -8,6 +8,14 @@ pipeline {
                 git branch: 'main', credentialsId: '', url: 'https://github.com/hocinilotfi/orangehrmtest.git'
             }
         }
+        stage('List Files') {
+            steps {
+                script {
+                    // Lister les fichiers dans le répertoire courant pour vérifier le clonage
+                    sh 'ls -l'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
