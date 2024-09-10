@@ -34,7 +34,9 @@ public class WebDriverManagerClass{
                     // options2.addArguments("--disable-dev-shm-usage");
                     // options2.addArguments("--disable-gpu");
                     //driver = new ChromeDriver(options2);
-                    driver = WebDriverManager.chromedriver().create();
+                    WebDriverManager wdm = WebDriverManager.chromedriver().browserInDocker();
+                    driver = wdm.create();
+                    // driver = WebDriverManager.chromedriver().create();
                     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
             }
