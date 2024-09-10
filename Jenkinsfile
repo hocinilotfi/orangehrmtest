@@ -25,7 +25,10 @@ pipeline {
             steps {
                 script {
                     try {
-                        // Exécuter le conteneur Selenium Grid
+                        // Nettoyer les conteneurs Selenium existants
+                        sh 'docker rm -f selenium-hub || true'
+
+                        // Exécuter le conteneur Selenium Hub
                         sh 'docker run -d --name selenium-hub -p 4444:4444 selenium/standalone-chrome'
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
@@ -52,6 +55,9 @@ pipeline {
         always {
             // Publier les résultats des tests Cucumber
             cucumber 'target/cucumber-report/cucumber-report.json'
+            
+            // Nettoyer les ressources Selenium Hub
+            sh 'docker rm -f selenium-hub || true'
         }
     }
 }
