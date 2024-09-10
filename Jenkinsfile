@@ -29,6 +29,22 @@ pipeline {
                 }
             }
         }
+        stage('Verify Volume Mount') {
+            steps {
+                script {
+                    // Vérifiez le contenu du volume monté dans le conteneur Docker
+                    sh 'docker run --rm -v $WORKSPACE:/app -w /app maven-test-image ls -l /app'
+                }
+            }
+        }
+        stage('Verify Working Directory') {
+            steps {
+                script {
+                    // Vérifiez le répertoire courant et le contenu dans le conteneur Docker
+                    sh 'docker run --rm -v $WORKSPACE:/app -w /app maven-test-image sh -c "pwd && ls -l"'
+                }
+            }
+        }
         stage('Build Project') {
             steps {
                 script {
